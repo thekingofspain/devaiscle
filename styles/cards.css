@@ -1,0 +1,217 @@
+/* ============================================
+   PLAYING CARDS - CORE STYLES
+   ============================================ */
+
+/**
+ * Base card container
+ */
+.playing-card {
+  display: inline-block;
+  position: relative;
+  cursor: default;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.playing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================
+   SUIT COLORS
+   Red suits (Hearts, Diamonds)
+   Black suits (Clubs, Spades)
+   ============================================ */
+
+.suit-hearts,
+.suit-diamonds {
+  color: #E42129;
+}
+
+.suit-clubs,
+.suit-spades {
+  color: #2B2B2B;
+}
+
+/* ============================================
+   CARD SIZES
+   Small, Medium, Large
+   ============================================ */
+
+.playing-card.card-sm {
+  width: 60px;
+  height: 86px;
+}
+
+.playing-card.card-md {
+  width: 100px;
+  height: 143px;
+}
+
+.playing-card.card-lg {
+  width: 150px;
+  height: 215px;
+}
+
+/* ============================================
+   DECK STYLES
+   Classic deck styling
+   ============================================ */
+
+.deck-classic {
+  /* Classic uses the standard svg-cards SVG */
+}
+
+/* Future deck styles can be added here */
+.deck-modern {
+  /* Modern style variations */
+}
+
+.deck-minimal {
+  /* Minimal style variations */
+}
+
+/* ============================================
+   CARD STATES
+   Flipped, Selected, Disabled
+   ============================================ */
+
+.playing-card.card-flipped {
+  transform: rotateY(180deg);
+}
+
+.playing-card.card-selected {
+  outline: 3px solid #FFD700;
+  outline-offset: 2px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.playing-card.card-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(50%);
+}
+
+.playing-card.card-flipping {
+  transition: transform 0.3s ease;
+}
+
+/* ============================================
+   CARD BACK
+   Hidden side of cards
+   ============================================ */
+
+.playing-card.card-back {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ============================================
+   LAYOUTS
+   Hand (fanned) and Grid layouts
+   ============================================ */
+
+.card-hand {
+  position: relative;
+  display: inline-block;
+}
+
+.card-grid {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .playing-card.card-md {
+    width: 70px;
+    height: 100px;
+  }
+  
+  .playing-card.card-lg {
+    width: 100px;
+    height: 143px;
+  }
+  
+  .card-hand {
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 480px) {
+  .playing-card.card-md {
+    width: 50px;
+    height: 72px;
+  }
+  
+  .playing-card.card-lg {
+    width: 70px;
+    height: 100px;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.playing-card:focus {
+  outline: 2px solid #0066CC;
+  outline-offset: 2px;
+}
+
+.playing-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.playing-card:focus-visible {
+  outline: 2px solid #0066CC;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes cardDeal {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+}
+
+.playing-card.deal-animation {
+  animation: cardDeal 0.4s ease-out forwards;
+}
+
+@keyframes cardShuffle {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+}
+
+.playing-card.shuffle-animation {
+  animation: cardShuffle 0.3s ease-in-out;
+}
