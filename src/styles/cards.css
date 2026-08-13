@@ -1,0 +1,152 @@
+/* src/styles/cards.css */
+
+:root {
+  /* Card Dimensions (Aspect Ratio ~2.5 x 3.5) */
+  --card-width-small: 60px;
+  --card-width-medium: 100px;
+  --card-width-large: 150px;
+  
+  /* Colors matching the 4-color deck SVGs */
+  --suit-hearts-color: #ff0000;
+  --suit-diamonds-color: #0000ff; /* Blue in 4-color deck */
+  --suit-clubs-color: #008000;    /* Green in 4-color deck */
+  --suit-spades-color: #000000;
+}
+
+/* Base Card Class */
+.playing-card {
+  display: inline-block;
+  position: relative;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+  
+  /* Default Medium Size */
+  width: var(--card-width-medium);
+  height: calc(var(--card-width-medium) * 1.4);
+}
+
+.playing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+/* Size Modifiers */
+.playing-card.card-sm {
+  width: var(--card-width-small);
+  height: calc(var(--card-width-small) * 1.4);
+}
+
+.playing-card.card-lg {
+  width: var(--card-width-large);
+  height: calc(var(--card-width-large) * 1.4);
+}
+
+/* State Modifiers */
+.playing-card.face-down {
+  background-image: url('../svgs/1B.svg') !important;
+  cursor: pointer;
+}
+
+.playing-card.selected {
+  outline: 3px solid gold;
+  outline-offset: 2px;
+}
+
+/* 
+ * Card Face Backgrounds 
+ * Using SVG filename as CSS class selector
+ * Format: .[filename-without-extension]
+ * Examples: .c7s for 7S.svg, .cAh for AH.svg
+ */
+
+/* Aces */
+.cAs { background-image: url('../svgs/AS.svg'); }
+.cAh { background-image: url('../svgs/AH.svg'); }
+.cAd { background-image: url('../svgs/AD.svg'); }
+.cAc { background-image: url('../svgs/AC.svg'); }
+
+/* Kings */
+.cKs { background-image: url('../svgs/KS.svg'); }
+.cKh { background-image: url('../svgs/KH.svg'); }
+.cKd { background-image: url('../svgs/KD.svg'); }
+.cKc { background-image: url('../svgs/KC.svg'); }
+
+/* Queens */
+.cQs { background-image: url('../svgs/QS.svg'); }
+.cQh { background-image: url('../svgs/QH.svg'); }
+.cQd { background-image: url('../svgs/QD.svg'); }
+.cQc { background-image: url('../svgs/QC.svg'); }
+
+/* Jacks */
+.cJs { background-image: url('../svgs/JS.svg'); }
+.cJh { background-image: url('../svgs/JH.svg'); }
+.cJd { background-image: url('../svgs/JD.svg'); }
+.cJc { background-image: url('../svgs/JC.svg'); }
+
+/* Tens */
+.cTs { background-image: url('../svgs/TS.svg'); }
+.cTh { background-image: url('../svgs/TH.svg'); }
+.cTd { background-image: url('../svgs/TD.svg'); }
+.cTc { background-image: url('../svgs/TC.svg'); }
+
+/* Nines */
+.c9s { background-image: url('../svgs/9S.svg'); }
+.c9h { background-image: url('../svgs/9H.svg'); }
+.c9d { background-image: url('../svgs/9D.svg'); }
+.c9c { background-image: url('../svgs/9C.svg'); }
+
+/* Eights */
+.c8s { background-image: url('../svgs/8S.svg'); }
+.c8h { background-image: url('../svgs/8H.svg'); }
+.c8d { background-image: url('../svgs/8D.svg'); }
+.c8c { background-image: url('../svgs/8C.svg'); }
+
+/* Sevens */
+.c7s { background-image: url('../svgs/7S.svg'); }
+.c7h { background-image: url('../svgs/7H.svg'); }
+.c7d { background-image: url('../svgs/7D.svg'); }
+.c7c { background-image: url('../svgs/7C.svg'); }
+
+/* Sixes */
+.c6s { background-image: url('../svgs/6S.svg'); }
+.c6h { background-image: url('../svgs/6H.svg'); }
+.c6d { background-image: url('../svgs/6D.svg'); }
+.c6c { background-image: url('../svgs/6C.svg'); }
+
+/* Fives */
+.c5s { background-image: url('../svgs/5S.svg'); }
+.c5h { background-image: url('../svgs/5H.svg'); }
+.c5d { background-image: url('../svgs/5D.svg'); }
+.c5c { background-image: url('../svgs/5C.svg'); }
+
+/* Fours */
+.c4s { background-image: url('../svgs/4S.svg'); }
+.c4h { background-image: url('../svgs/4H.svg'); }
+.c4d { background-image: url('../svgs/4D.svg'); }
+.c4c { background-image: url('../svgs/4C.svg'); }
+
+/* Threes */
+.c3s { background-image: url('../svgs/3S.svg'); }
+.c3h { background-image: url('../svgs/3H.svg'); }
+.c3d { background-image: url('../svgs/3D.svg'); }
+.c3c { background-image: url('../svgs/3C.svg'); }
+
+/* Twos */
+.c2s { background-image: url('../svgs/2S.svg'); }
+.c2h { background-image: url('../svgs/2H.svg'); }
+.c2d { background-image: url('../svgs/2D.svg'); }
+.c2c { background-image: url('../svgs/2C.svg'); }
+
+/* Jokers */
+.c1J { background-image: url('../svgs/1J.svg'); }
+.c2J { background-image: url('../svgs/2J.svg'); }
+
+/* Card Backs */
+.c1B { background-image: url('../svgs/1B.svg'); }
+.c2B { background-image: url('../svgs/2B.svg'); }
