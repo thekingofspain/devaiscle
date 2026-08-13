@@ -1,8 +1,8 @@
 /**
  * CardRenderer - Renders playing cards as DOM elements with SVG backgrounds
  * 
- * Cards are rendered using CSS classes that apply SVG backgrounds.
- * Each card gets a unique class based on its suit and rank.
+ * Cards are rendered using CSS classes that match the SVG filename.
+ * Format: .c[FileName] e.g., .c7S for 7S.svg, .cAH for AH.svg
  */
 
 import type { Card } from './types';
@@ -22,17 +22,18 @@ export class CardRenderer {
   }
 
   /**
-   * Generate CSS class name for a card
+   * Generate CSS class name for a card based on its SVG filename
+   * Format: c[FileName] e.g., c7S for 7S.svg
    */
   getCardClass(card: Card): string {
-    return `card-${card.suit}-${card.rank}`;
+    return `c${card.svgFile.replace('.svg', '')}`;
   }
 
   /**
    * Generate CSS class for card back
    */
   getCardBackClass(): string {
-    return 'card-back';
+    return `c${getBackSvgFileName().replace('.svg', '')}`;
   }
 
   /**
@@ -63,11 +64,7 @@ export class CardRenderer {
     element.setAttribute('data-rank', card.rank);
     element.setAttribute('data-color', card.color);
     
-    // Set background image via inline style for dynamic SVG path
-    element.style.backgroundImage = this.getCardSvgUrl(card);
-    element.style.backgroundSize = '100% 100%';
-    element.style.backgroundRepeat = 'no-repeat';
-    element.style.backgroundPosition = 'center';
+    // Background image is applied via CSS class matching filename
     
     return element;
   }
@@ -84,10 +81,7 @@ export class CardRenderer {
     element.setAttribute('aria-label', 'Card back');
     element.setAttribute('data-face', 'back');
     
-    element.style.backgroundImage = this.getCardBackSvgUrl();
-    element.style.backgroundSize = '100% 100%';
-    element.style.backgroundRepeat = 'no-repeat';
-    element.style.backgroundPosition = 'center';
+    // Background image is applied via CSS class matching filename
     
     return element;
   }
@@ -112,7 +106,7 @@ export class CardRenderer {
    * Generate CSS styles for all cards
    */
   generateStyles(): string {
-    const suits = ['hearts', 'diamonds', 'clubs', 'spades'] as const;
+    const suits = ['S', 'H', 'D', 'C'] as const;
     const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'] as const;
     
     let css = `
@@ -145,37 +139,33 @@ export class CardRenderer {
   height: 210px;
 }
 
-/* Suit-specific colors (for accessibility fallback) */
+/* Card face backgrounds by filename class */
 `;
 
-    // Generate class-based background URLs
+    // Generate class-based background URLs matching SVG filenames
     for (const suit of suits) {
       for (const rank of ranks) {
-        const fileName = this.getSvgFileName(rank, suit);
+        const fileName = `${rank}${suit}.svg`;
+        const className = `c${rank}${suit}`;
         css += `
-.card-${suit}-${rank} {
-  /* Background is set via inline style for dynamic path */
+.${className} {
+  background-image: url('${this.svgPath}/${fileName}');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 `;
       }
     }
 
+    // Jokers and backs
     css += `
-.card-back {
-  /* Background is set via inline style for dynamic path */
-}
+.c1J { background-image: url('${this.svgPath}/1J.svg'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center; }
+.c2J { background-image: url('${this.svgPath}/2J.svg'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center; }
+.c1B { background-image: url('${this.svgPath}/1B.svg'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center; }
+.c2B { background-image: url('${this.svgPath}/2B.svg'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center; }
 `;
 
     return css;
-  }
-
-  private getSvgFileName(rank: string, suit: string): string {
-    const suitMap: Record<string, string> = {
-      spades: 'S',
-      hearts: 'H',
-      diamonds: 'D',
-      clubs: 'C',
-    };
-    return `${rank}${suitMap[suit]}.svg`;
   }
 }
