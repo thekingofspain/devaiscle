@@ -2,20 +2,41 @@
 # Dependencies
 node_modules/
 
-# Logs and temp files
-*.log
-*.tmp
+# Build outputs
+dist/
+build/
+target/
+
+# TypeScript/Vite
+*.tsbuildinfo
+.vite/
+
+# Package lock
+package-lock.json
 
 # Environment
 .env
 .env.local
-*.env.*
+.env.*
 
 # Editors
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# Python
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Python (in case Python files are added later)
 __pycache__/
 *.pyc
 *.pyo
@@ -25,36 +46,7 @@ venv/
 .venv/
 .env
 .env.local
-*.env.*
-
-# Build outputs
-dist/
-build/
-*.min.js
-*.min.css
-*.bundle.js
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Coverage reports
-coverage/
-htmlcov/
-.coverage
-
-# IDE specific
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Archives
-*.zip
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.gz
-*.rar
-*.7z
+.env.*
+.pytest_cache/
+.mypy_cache/
 ```

@@ -1,0 +1,80 @@
+.playing-card {
+  display: inline-block;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: white;
+}
+
+.playing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Card sizes */
+.card-size-small {
+  width: 50px;
+  height: 70px;
+}
+
+.card-size-medium {
+  width: 100px;
+  height: 140px;
+}
+
+.card-size-large {
+  width: 150px;
+  height: 210px;
+}
+
+/* Four-color suit indicators (for accessibility) */
+.playing-card[data-suit="hearts"][data-color="red"] {
+  /* Hearts are red */
+}
+
+.playing-card[data-suit="diamonds"][data-color="blue"] {
+  /* Diamonds are blue */
+}
+
+.playing-card[data-suit="clubs"][data-color="green"] {
+  /* Clubs are green */
+}
+
+.playing-card[data-suit="spades"][data-color="black"] {
+  /* Spades are black */
+}
+
+/* Card back */
+.card-back {
+  /* Background set via inline style */
+}
+
+/* Layout utilities */
+.card-hand {
+  display: flex;
+  gap: -30px;
+}
+
+.card-hand .playing-card {
+  margin-left: -30px;
+}
+
+.card-hand .playing-card:first-child {
+  margin-left: 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 8px;
+}
+
+/* Flip animation */
+.playing-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.playing-card-container {
+  perspective: 1000px;
+}

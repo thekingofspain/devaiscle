@@ -1,0 +1,25 @@
+{
+  "name": "playing-cards",
+  "version": "1.0.0",
+  "description": "A TypeScript library for playing cards with 4-color SVG backgrounds from me.uk/cards",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": ["playing-cards", "svg", "cards", "deck", "typescript"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "@vitest/ui": "^4.1.10",
+    "happy-dom": "^20.11.2",
+    "jsdom": "^29.1.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.1",
+    "vitest": "^4.1.10"
+  }
+}
